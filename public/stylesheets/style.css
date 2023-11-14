@@ -1,8 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200&family=Poppins&family=Work+Sans:wght@300&display=swap');
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    margin: 0;
+    background: #222;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 300;
+    color: white;
 }
 
-a {
-  color: #00B7FF;
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #a00085;
+    box-shadow: 12px 0 20px #a00085;
+}
+/* correct update */
+header::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.logo {
+    padding: 10px 0;
+    float: left;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.container.header {
+    justify-content: left;
+}
+
+.header h1 {
+    font-size: 24px;
+    padding: 2% 0 0 5%;
+    margin-bottom: 0;
+} 
+.header p {
+    font-size: 14px;
+    padding: 0;
+    margin-top: 2%;
+}
+
+nav {
+    justify-content: right;
+    margin-left: 40%;
+}
+
+nav ul {
+    margin: 0;
+    padding: 2% 0;
+    list-style: none;
+}
+
+nav li {
+    /* float: left; */
+    display: inline-block;
+    margin-left: 70px;
+    padding-top: 23px;
+
+    position: relative;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #ffffff;
+}
+
+nav a::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background-color: #ffffff;
+
+    position: absolute;
+    top: 0;
+    width: 0%;
+    transition: all ease-in 250ms;
+}
+
+nav a:hover::before {
+    width: 100%;
 }
