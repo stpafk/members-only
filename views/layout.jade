@@ -15,7 +15,11 @@ html
           ul
             li: a(href='/') Home
             li: a(href='/messages') Messages
-            li: a(href='/login') Login
+            if !req.session.id
+              li: a(href='/login') Login
+            else
+              li: a(href='/logout') Logout
+
 
   main
       block content
