@@ -1,0 +1,39 @@
+extends layout
+
+block content 
+    .register 
+        h1.register Register 
+
+        form(class='register form' method='POST' action='')
+            div.form-content
+                label(for="first_name") First Name: 
+                input#first_name.form-control(type='text' name='first_name' 
+                placeholder='First Name' required='true'
+                value=(undefined === user ? '' : user.first_name))
+            div.form-content
+                label(for="last_name") last_name: 
+                input#last_name.form-control(type='text' name='last_name' 
+                placeholder='Your last_name' required='true'
+                value=(undefined === user ? '' : user.last_name))
+            div.form-content
+                label(for="email") Email: 
+                input#email.form-control(type='text' name='email'
+                placeholder='Your Email' required='true'
+                value=(undefined === user ? '' : user.email))
+                if emailTaken
+                    div.alert.alert-danger
+                        p #{emailTaken}
+            div.form-content
+                label(for="password") Password: 
+                input#password.form-control(type='password' name='password' 
+                placeholder='Your Password' required='true')
+            
+            button.btn.btn-primary(type='submit') Submit
+        
+        a(href='/login')
+
+        if errors
+                ul
+                    for error in errors
+                        li!= error.msg
+            
