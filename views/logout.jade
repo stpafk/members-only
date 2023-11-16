@@ -1,0 +1,11 @@
+extends layout 
+
+block content
+    .logout 
+        h1 #{title}
+        
+        p Do you want to logout from #{session.user.user}?
+
+        form.logout.form(method='POST' action='')
+            .form-group 
+                button.form.btn Logout
