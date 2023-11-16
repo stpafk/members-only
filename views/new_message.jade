@@ -1,0 +1,26 @@
+extends layout
+
+block content 
+    .login 
+        h1.login #{title}
+
+        if !error 
+
+            form(class='login form' method='POST' action='')
+                div.form-content
+                    label(for="email") Message: 
+                    textarea#text.form-control(type='text' name='message'
+                    placeholder="What's on your mind?" required='true'
+                    value=(undefined === message ? '' : message.message))
+                button.form.btn(type='submit') Send Post
+
+        else 
+            p(style='margin: 0 auto;') Please log in to post new message.
+            .outer
+                a(href='/register') Register Here
+
+        if errors
+                ul
+                    for error in errors
+                        li!= error.msg
+            

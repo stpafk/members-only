@@ -2,4 +2,10 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  
+  ul.messages 
+    for message in messages 
+      li 
+        p= message.message
+        p= message.time_stamp
+        a #{message.user.full_name}

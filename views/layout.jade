@@ -14,9 +14,8 @@ html
         nav
           ul
             li: a(href='/') Home
-            li: a(href='/messages') Messages
             if (session)
-              li: a(href='/user/' + session.user.id) #{session.user.first}
+              li: a(href='/message/new') New Message
               li: a(href='/logout') Logout
             else 
               li: a(href='/login') Login
