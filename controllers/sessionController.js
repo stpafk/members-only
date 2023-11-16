@@ -2,6 +2,8 @@ const asyncHandler = require('express-async-handler');
 const {body, validationResult} = require('express-validator');
 const bcrypt = require('bcryptjs');
 const User = require('../models/users');
+const passport = require('passport');
+const authLogin = require('../config/passport')
 
 exports.get_index = asyncHandler(async(req, res, next) => {
     res.render("index", { title: "Members Only"})
@@ -66,5 +68,28 @@ exports.get_login = asyncHandler(async (req, res, next) => {
     res.render("login", {title: "Login"});
 })
 
+exports.post_login = [
+    passport.authenticate("login"), 
+    asyncHandler(async(req, res, next) => {
+        res.redirect("/");
+    })
+];
 
+exports.get_logout = asyncHandler(async(req, res, next) => {
 
+    if(res.locals.session === null) {
+        res.redirect("/login");
+    }
+
+    res.render("logout", {title: "Logout"})
+})
+
+exports.post_logout = asyncHandler(async(req, res, next) => {
+    req.logout(function(err) {
+        if(err) {
+            return next(err);
+        }
+
+        res.redirect("/");
+    })
+})
