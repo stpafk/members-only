@@ -6,10 +6,8 @@ const bcrypt = require('bcryptjs')
 passport.use('login', new LocalStrategy(
     {usernameField: "email", passwordField: "password"},
     function(username, password, done) {
-        console.log('auth');    
         User.findOne({email: username})
         .then((user) => {
-            console.log(user);
             if (!user) {
                 return done(null, false, {message: "problem"})
             } 
@@ -26,7 +24,7 @@ passport.use('login', new LocalStrategy(
 
 passport.serializeUser((user, done) => {
     process.nextTick(function() {
-        done(null, {id: user.id, user: user.full_name})
+        done(null, {id: user.id, first: user.first_name, user: user.full_name})
     })
 })
 
