@@ -26,16 +26,12 @@ passport.use('login', new LocalStrategy(
 
 passport.serializeUser((user, done) => {
     process.nextTick(function() {
-        done(null, {id: user._id, user: user.full_name})
+        done(null, {id: user.id, user: user.full_name})
     })
 })
 
-passport.deserializeUser(async (id, done) => {
-    try {
-        const user = await User.findById(id);
-        done(null, user);
-    }
-    catch(err) {
-        done(err);
-    };
+passport.deserializeUser(async (user, done) => {
+    process.nextTick(function() {
+        return done(null, user);
+    })
 });
