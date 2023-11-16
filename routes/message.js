@@ -8,5 +8,6 @@ router.get('*', function(req, res, next) {
   next();
 })
 
-router.get('/new', messageController.get_create_message)
+router.get('/new', messageController.get_create_message);
+router.post('/new', messageController.post_create_message);
 module.exports = router;
