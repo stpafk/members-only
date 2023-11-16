@@ -16,17 +16,19 @@ exports.get_create_message = asyncHandler(async (req, res, next) => {
     res.render("new_message", {title: "New Message"})
 })
 
+const decode = require('../config/he')
+
 exports.post_create_message = [ 
     
     body("message").isEmpty().escape("Message should not be empty.")
     ,
     asyncHandler(async(req, res, next) => {
         const errors = validationResult(req.body);
-        console.log(req.user)
         const user = await User.findById(req.user.id);
+        const decodedMessage = decode(req.body.message)
 
         const message = new Message({
-            message: req.body.message,
+            message: decodedMessage,
             time_stamp: new Date(),
             user: user,
         })

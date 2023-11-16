@@ -2,16 +2,25 @@ const asyncHandler = require('express-async-handler');
 const {body, validationResult} = require('express-validator');
 const bcrypt = require('bcryptjs');
 const User = require('../models/users');
+const Message = require('../models/messages')
 const passport = require('passport');
 const authLogin = require('../config/passport')
 
 exports.get_index = asyncHandler(async(req, res, next) => {
-    res.render("index", { title: "Members Only"})
+
+    const messages = await Message.find({}).populate("user").exec();
+
+    res.render("index", { 
+        title: "Members Only",
+        messages: messages,
+    })
 });
 
 exports.get_register = asyncHandler(async(req, res, next) => {
     res.render("register", { title: "Register" })
 });
+
+const decode = require('../config/he');
 
 exports.post_register = [
 
@@ -39,12 +48,13 @@ exports.post_register = [
 
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
-
         const password = await bcrypt.hash(req.body.password, 12);
+        const first_name = decode(req.body.first_name);
+        const last_name = decode(req.body.last_name);
 
         const user = new User({
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
+            first_name: first_name,
+            last_name: last_name,
             email: req.body.email,
             password: password,
         })
