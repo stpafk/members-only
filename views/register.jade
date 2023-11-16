@@ -2,7 +2,7 @@ extends layout
 
 block content 
     .register 
-        h1.register Register 
+        h1.register #{title} 
 
         form(class='register form' method='POST' action='')
             div.form-content
@@ -11,7 +11,7 @@ block content
                 placeholder='First Name' required='true'
                 value=(undefined === user ? '' : user.first_name))
             div.form-content
-                label(for="last_name") last_name: 
+                label(for="last_name") Last Name: 
                 input#last_name.form-control(type='text' name='last_name' 
                 placeholder='Your last_name' required='true'
                 value=(undefined === user ? '' : user.last_name))
@@ -29,7 +29,7 @@ block content
                 input#password.form-control(type='password' name='ps_confirm' 
                 placeholder='Confirm Password' required='true')
             
-            button.btn.btn-primary(type='submit') Submit
+            button.form.btn(type='submit') Submit
         
         a(href='/login')
 

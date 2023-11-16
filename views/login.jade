@@ -2,7 +2,7 @@ extends layout
 
 block content 
     .login 
-        h1.login Login 
+        h1.login #{title}
 
         form(class='login form' method='POST' action='')
             div.form-content
@@ -15,9 +15,11 @@ block content
                 input#password.form-control(type='password' name='password' 
                 placeholder='Your Password' required='true')
             
-            button.btn.btn-primary(type='submit') Submit
+            button.form.btn(type='submit') Submit
         
-        a(href='/register') Not registered yet?
+        .outer
+            p.confirm Not registered yet?
+            a(href='/register') Register Here
 
         if errors
                 ul
