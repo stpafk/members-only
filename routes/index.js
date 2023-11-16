@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const sessionController = require('../controllers/sessionController');
-const passport = require('passport');
-const authLogin = require('../config/passport')
 
 /* GET home page. */
 router.get('*', function(req, res, next) {
@@ -15,9 +13,9 @@ router.get("/register", sessionController.get_register);
 router.post("/register", sessionController.post_register);
 
 router.get("/login", sessionController.get_login);
-router.post("/login", passport.authenticate("login"), function(req, res) {
-  console.log(req.session)
-  res.redirect("/")
-})
+router.post("/login", sessionController.post_login);
+
+router.get("/logout", sessionController.get_logout)
+router.post("/logout", sessionController.post_logout);
 
 module.exports = router;
