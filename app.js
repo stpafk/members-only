@@ -6,7 +6,7 @@ var logger = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
-require("dotenv").config;
+require("dotenv").config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -19,9 +19,10 @@ CONNECT TO MONGODB
 
 const mongoDB = process.env.MONGODB
 
+main().catch(err => console.log(err));
 mongoose.set("strictQuery", false);
 async function main() {
-  await mongoose.connect(mongoDB)
+  await mongoose.connect(mongoDB);
 }
 
 // view engine setup
