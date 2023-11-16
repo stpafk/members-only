@@ -4,17 +4,11 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/users');
 
 exports.get_index = asyncHandler(async(req, res, next) => {
-    res.render("index", {
-        title: "Members Only",
-        req: req,
-    })
+    res.render("index", { title: "Members Only"})
 });
 
 exports.get_register = asyncHandler(async(req, res, next) => {
-    res.render("register", {
-        title: "Register",
-        req: req,
-    })
+    res.render("register", { title: "Register" })
 });
 
 exports.post_register = [
@@ -68,6 +62,7 @@ exports.post_register = [
 ];
 
 exports.get_login = asyncHandler(async (req, res, next) => {
+    console.log(req.session)
     res.render("login", {title: "Login"});
 })
 
