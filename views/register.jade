@@ -20,9 +20,6 @@ block content
                 input#email.form-control(type='text' name='email'
                 placeholder='Your Email' required='true'
                 value=(undefined === user ? '' : user.email))
-                if emailTaken
-                    div.alert.alert-danger
-                        p #{emailTaken}
             div.form-content
                 label(for="password") Password: 
                 input#password.form-control(type='password' name='password' 

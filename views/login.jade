@@ -1,0 +1,26 @@
+extends layout
+
+block content 
+    .login 
+        h1.login Login 
+
+        form(class='login form' method='POST' action='')
+            div.form-content
+                label(for="email") Email: 
+                input#email.form-control(type='text' name='email'
+                placeholder='Your Email' required='true'
+                value=(undefined === user ? '' : user.email))
+            div.form-content
+                label(for="password") Password: 
+                input#password.form-control(type='password' name='password' 
+                placeholder='Your Password' required='true')
+            
+            button.btn.btn-primary(type='submit') Submit
+        
+        a(href='/register') Not registered yet?
+
+        if errors
+                ul
+                    for error in errors
+                        li!= error.msg
+            
