@@ -63,9 +63,13 @@ exports.post_register = [
         };
 
         await user.save();
-        res.redirect("/")
+        res.redirect("/login");
     })
-]
+];
+
+exports.get_login = asyncHandler(async (req, res, next) => {
+    res.render("login", {title: "Login"});
+})
 
 
 
