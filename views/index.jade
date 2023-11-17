@@ -2,10 +2,13 @@ extends layout
 
 block content
   h1= title
-  
+
   ul.messages 
     for message in messages 
-      li 
-        p= message.message
-        p= message.time_stamp
-        a #{message.user.full_name}
+      li.message.li(id=message._id) 
+        if (session)
+          .message.user
+            a #{message.user.full_name}
+        .message.info 
+            p= message.message
+            p= message.time_stamp
