@@ -110,9 +110,14 @@ exports.handle_get_contribute = asyncHandler(async(req, res, next) => {
     let notLogged;
     req.user ? notLogged = false : notLogged = true; 
 
+    if (notLogged) {
+        res.render("not_logged", {
+            problem: "contribute"
+        });
+    };
+
     res.render("contribute", {
         title: "Contribute",
-        notLogged: notLogged,
     })
 
 })
@@ -157,10 +162,15 @@ exports.get_top = asyncHandler(async(req, res, next) => {
     let notLogged;
     req.user ? notLogged = false : notLogged = true; 
 
+    if (notLogged) {
+        res.render("not_logged", {
+            problem: "contribute"
+        });
+    };
+
     res.render("top_contribute", {
         title: "Top Contributors",
-        notLogged: notLogged,
         contributors: contributors,
-    })
+    });
 
 })

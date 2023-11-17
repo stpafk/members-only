@@ -5,13 +5,9 @@ const Message = require("../models/messages");
 
 exports.get_create_message = asyncHandler(async (req, res, next) => {
 
-    if (!req.session.passport) {
-        res.render("new_message", {
-            title: "Not logged",
-            error: true,
-        })
-        return;
-    }
+    res.render("not_logged", {
+        problem: "post a message"
+    });
 
     res.render("new_message", {title: "New Message"})
 })
@@ -54,15 +50,14 @@ exports.get_message = asyncHandler(async (req, res, next) => {
     .exec();
 
     if (message === null) {
-        const err = new Error("Message does not exist.");
+        const err = new Error("Message does not exist");
         err.status = 404;
         return next(err);
     };
 
     if (!req.user) {
-        res.render("message_detail", {
-            title: "Message Detail",
-            message: message,
+        res.render("not_logged", {
+            problem: "see details from messages"
         });
         return;
     }

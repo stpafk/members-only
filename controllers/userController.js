@@ -9,6 +9,12 @@ exports.get_user_detail = asyncHandler(async (req, res, next) => {
         Message.find({user: req.params.id}).exec()
     ]);
 
+    if (!req.user) {
+        res.render("not_logged", {
+            problem: "see users"
+        })
+    }
+
     if (user === null) {
         const err = new Error("User does not exist.");
         err.status = 404;
