@@ -24,7 +24,7 @@ passport.use('login', new LocalStrategy(
 
 passport.serializeUser((user, done) => {
     process.nextTick(function() {
-        done(null, {id: user.id, first: user.first_name, user: user.full_name})
+        done(null, {id: user.id, first: user.first_name, user: user.full_name, is_admin: user.is_admin})
     })
 })
 

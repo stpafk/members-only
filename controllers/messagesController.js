@@ -46,3 +46,58 @@ exports.post_create_message = [
         res.redirect("/")
     })
 ]
+
+exports.get_message = asyncHandler(async (req, res, next) => {
+    let canDelete = false;
+    const message = await Message.findById(req.params.id)
+    .populate("user")
+    .exec();
+
+    if (message === null) {
+        const err = new Error("Message does not exist.");
+        err.status = 404;
+        return next(err);
+    };
+
+    if (!req.user) {
+        res.render("message_detail", {
+            title: "Message Detail",
+            message: message,
+        });
+        return;
+    }
+
+    if (req.user.is_admin || req.user.id === message.user.id) {
+        canDelete = true;
+    }
+
+    res.render("message_detail", {
+        title: "Message Detail", 
+        message: message,
+        canDelete: canDelete,
+    })
+
+})
+
+exports.post_message_delete = asyncHandler(async (req, res, next) => {
+
+    const message = await Message.findById(req.params.id)
+    .populate("user")
+    .exec();
+
+    if (!req.user.is_admin) {
+
+        if (message.user.equals(req.user.id)) {
+            await Message.findByIdAndDelete(req.params.id);
+            res.redirect("/")
+        }
+
+        const err = new Error("Not allowed");
+        err.status = 405;
+        return next(err);
+    }
+    
+    await Message.findByIdAndDelete(req.params.id);
+    res.redirect("/")
+    
+})

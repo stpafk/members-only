@@ -10,4 +10,7 @@ router.get('*', function(req, res, next) {
 
 router.get('/new', messageController.get_create_message);
 router.post('/new', messageController.post_create_message);
+
+router.get("/:id", messageController.get_message);
+
 module.exports = router;
