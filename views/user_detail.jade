@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+
+  ul.messages 
+    for message in userMessages 
+      li.message.li(id=message._id) 
+        .message.user
+            a(href="/user/" + message.user._id) #{message.user.full_name}
+        .message.info 
+            p= message.message
+            p= message.formatted_date

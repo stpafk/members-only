@@ -10,6 +10,7 @@ require("dotenv").config();
 
 var indexRouter = require('./routes/index');
 var messageRouter = require('./routes/message');
+var userRouter = require('./routes/user');
 
 var app = express();
 
@@ -47,7 +48,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRouter);
-app.use('/message', messageRouter)
+app.use('/message', messageRouter);
+app.use('/user', userRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
