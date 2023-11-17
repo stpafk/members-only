@@ -11,4 +11,5 @@ block content
             a(href="/user/" + message.user._id) #{message.user.full_name}
         .message.info 
             p= message.message
-            p= message.formatted_date
+            if (session)
+              p= message.formatted_date

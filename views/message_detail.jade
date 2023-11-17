@@ -16,6 +16,6 @@ block content
                 p= message.formatted_date
 
         if (canDelete) 
-            form(action="" method='POST')
+            form(action="/message/" + message._id + "/delete" method='POST')
                 input(type="hidden" name="id" value=message._id)
                 button.form.btn(type='submit') Delete
