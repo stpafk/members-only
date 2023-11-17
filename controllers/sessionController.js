@@ -32,7 +32,6 @@ exports.post_register = [
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i;
 
         if(userEmail.length > 0) {
-            console.log(userEmail)
             throw new Error("Email already registered.");
         };
 
@@ -74,7 +73,6 @@ exports.post_register = [
 ];
 
 exports.get_login = asyncHandler(async (req, res, next) => {
-    console.log(req.session)
     res.render("login", {title: "Login"});
 })
 
@@ -102,4 +100,48 @@ exports.post_logout = asyncHandler(async(req, res, next) => {
 
         res.redirect("/");
     })
+});
+
+exports.handle_get_contribute = asyncHandler(async(req, res, next) => {
+
+    let notLogged;
+    req.user ? notLogged = false : notLogged = true; 
+
+    res.render("contribute", {
+        title: "Contribute",
+        notLogged: notLogged,
+    })
+
 })
+
+exports.handle_post_contribute = [
+    body("amount").isInt({min: 0, max: 100}).escape("Input valid amount."),
+
+    asyncHandler(async(req, res, next) => {
+        const errors = validationResult(req.body);
+
+        if (!errors.isEmpty()) {
+            res.render("contribute", {
+                title: "Contribute",
+                notLogged: false,
+                errors: errors.array()
+            })
+            return;
+        }
+
+        const user = await User.findById(req.user.id);
+        const amount = Number.parseInt(req.body.amount)
+
+        if (user.amount_contributed > 0) {
+            await User.findByIdAndUpdate(user._id, {
+                amount_contributed: user.amount_contributed + amount,
+            }, {});
+            res.redirect("/contribute/top");
+            return;
+        }
+
+        await User.findByIdAndUpdate(req.user.id, {amount_contributed: amount});
+
+        res.redirect("/contribute/top")
+    })
+]

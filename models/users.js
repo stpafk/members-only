@@ -7,7 +7,7 @@ const UserSchema = new Schema({
     last_name: {type: String, minLength: 2, required: true},
     email: {type: String, minLength: 6, required: true},
     password: {type: String, minLength: 6, required: true,},
-
+    amount_contributed: {type: Number, default: 0},
     is_admin: {type: Boolean},
 })
 
