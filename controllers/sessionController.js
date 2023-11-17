@@ -8,7 +8,10 @@ const authLogin = require('../config/passport')
 
 exports.get_index = asyncHandler(async(req, res, next) => {
 
-    const messages = await Message.find({}).populate("user").exec();
+    const messages = await Message.find({})
+    .populate("user")
+    .sort({time_stamp: -1})
+    .exec();
 
     res.render("index", { 
         title: "People been saying...",
