@@ -114,6 +114,8 @@ exports.handle_get_contribute = asyncHandler(async(req, res, next) => {
 
 })
 
+const handle_admin = require('../config/handle_admin');
+
 exports.handle_post_contribute = [
     body("amount").isInt({min: 0, max: 100}).escape("Input valid amount."),
 
@@ -136,12 +138,12 @@ exports.handle_post_contribute = [
             await User.findByIdAndUpdate(user._id, {
                 amount_contributed: user.amount_contributed + amount,
             }, {});
-            res.redirect("/contribute/top");
-            return;
+        } else {
+            await User.findByIdAndUpdate(req.user.id, {amount_contributed: amount}, {});
         }
 
-        await User.findByIdAndUpdate(req.user.id, {amount_contributed: amount});
-
+        handle_admin.handle_admin();
+        
         res.redirect("/contribute/top")
     })
 ]
