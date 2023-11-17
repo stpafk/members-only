@@ -1,0 +1,22 @@
+extends layout 
+
+block content 
+    h1= title 
+
+    if (notLogged)
+        .contribute 
+            p Please register or login to see top contributers.
+
+    else
+        table.contribute.list 
+            thead 
+                tr 
+                    th User 
+                    th Contribution
+            tbody 
+                for contribute in contributors 
+                    tr 
+                        td= contribute.full_name 
+                        td= contribute.amount_contributed
+                
+                    

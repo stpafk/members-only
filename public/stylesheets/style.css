@@ -15,8 +15,12 @@ body {
 }
 
 header {
-    background-color: #ff00d4c5;
+    background-color: rgb(228, 0, 190);
     box-shadow: 12px 0 20px #a00085;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 /* correct update */
 header::after {
@@ -98,8 +102,7 @@ nav a:hover::before {
 }
 
 main {
-    margin: 0 15%;
-    margin-bottom: 5%;
+    margin: 10% 15% 10% 15%;
 }
 
 .register, .login {
@@ -173,6 +176,27 @@ main {
     transition: 1s;
 } .outer a:hover {
     color: rgb(236, 38, 236);
+}
+
+.messages {
+    border-left: 2px solid rgba(128, 128, 128, 0.514);
+    border-right: 2px solid rgba(128, 128, 128, 0.514);
+}
+
+.messages li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.514);
+    padding: 5%;
+    margin: 0 5% 0 2%;
+    cursor:pointer
+}
+
+li .message.user a {
+    text-decoration: none;
+    color: rgb(228, 0, 190)
 }
 
 footer {

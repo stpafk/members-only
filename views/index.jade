@@ -8,7 +8,7 @@ block content
       li.message.li(id=message._id) 
         if (session)
           .message.user
-            a #{message.user.full_name}
+            a(href="/user/" + message.user._id) #{message.user.full_name}
         .message.info 
             p= message.message
             p= message.formatted_date
