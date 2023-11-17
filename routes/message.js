@@ -12,5 +12,6 @@ router.get('/new', messageController.get_create_message);
 router.post('/new', messageController.post_create_message);
 
 router.get("/:id", messageController.get_message);
+router.post("/:id/delete", messageController.post_message_delete)
 
 module.exports = router;
