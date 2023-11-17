@@ -22,4 +22,6 @@ router.post("/logout", sessionController.post_logout);
 router.get("/contribute", sessionController.handle_get_contribute);
 router.post("/contribute", sessionController.handle_post_contribute);
 
+router.get("/contribute/top", sessionController.get_top);
+
 module.exports = router;

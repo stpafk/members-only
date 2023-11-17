@@ -147,3 +147,17 @@ exports.handle_post_contribute = [
         res.redirect("/contribute/top")
     })
 ]
+
+exports.get_top = asyncHandler(async(req, res, next) => {
+
+    const contributors = await User.find().sort({ amount_contributed: -1 }).limit(10).exec();
+    let notLogged;
+    req.user ? notLogged = false : notLogged = true; 
+
+    res.render("top_contribute", {
+        title: "Top Contributors",
+        notLogged: notLogged,
+        contributors: contributors,
+    })
+
+})
