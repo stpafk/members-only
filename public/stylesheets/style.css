@@ -105,7 +105,7 @@ main {
     margin: 10% 15% 10% 15%;
 }
 
-.register, .login {
+.register, .login, .error {
     display: flex;
     flex-direction: column;
 }
@@ -156,9 +156,10 @@ main {
 
 .outer {
     display: flex;
-    margin: 0 auto;
+    margin: 2% auto;
     flex-direction: column;
     align-items: center;
+    font-size: 22px;
 }
 
 .form.btn:hover, .form.btn:focus {

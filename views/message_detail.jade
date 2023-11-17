@@ -2,20 +2,15 @@ extends layout
 
 block content
 
-    if (!session) 
-        h1 Log in to see details on messages.
-        a.login.alert(href='/login') Log in here.
+    h1= title 
+    .message.detail
+        .message.user
+            a(href="/user/" + message.user._id style="fontsize: 18px") #{message.user.full_name}
+        .message.info
+            h1= message.message
+            p= message.formatted_date
 
-    else 
-        h1= title 
-        .message.detail
-            .message.user
-                a(href="/user/" + message.user._id style="fontsize: 18px") #{message.user.full_name}
-            .message.info
-                h1= message.message
-                p= message.formatted_date
-
-        if (canDelete) 
-            form(action="/message/" + message._id + "/delete" method='POST')
-                input(type="hidden" name="id" value=message._id)
-                button.form.btn(type='submit') Delete
+    if (canDelete) 
+        form(action="/message/" + message._id + "/delete" method='POST')
+            input(type="hidden" name="id" value=message._id)
+            button.form.btn(type='submit') Delete

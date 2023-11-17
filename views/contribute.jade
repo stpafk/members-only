@@ -3,16 +3,11 @@ extends layout
 block content 
     h1= title 
 
-    if (notLogged)
-        .contribute 
-            p Please register or login to contribute.
+    .contribute 
+        form(action="", method="post")
 
-    else
-        .contribute 
-            form(action="", method="post")
+            .form-content
+                label(for="amount") How much?
+                input(type="number", name="amount" placeholder='Ex: 5$' min='1' max='100')
 
-                .form-content
-                    label(for="amount") How much?
-                    input(type="number", name="amount" placeholder='Ex: 5$' min='1' max='100')
-
-                button.form.btn(type='submit') Submit 
+            button.form.btn(type='submit') Submit 
