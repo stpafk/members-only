@@ -14,15 +14,13 @@ block content
                 label(for="password") Password: 
                 input#password.form-control(type='password' name='password' 
                 placeholder='Your Password' required='true')
+               
+            if passportError 
+                p= passportError
             
             button.form.btn(type='submit') Submit
         
         .outer
             p.confirm Not registered yet?
             a(href='/register') Register Here
-
-        if errors
-                ul
-                    for error in errors
-                        li!= error.msg
             
