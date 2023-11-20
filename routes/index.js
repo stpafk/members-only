@@ -5,7 +5,6 @@ const sessionController = require('../controllers/sessionController');
 /* GET home page. */
 router.get('*', function(req, res, next) {
   res.locals.session = req.session.passport || null;
-  console.log(res.locals.session)
   next();
 })
 router.get('/', sessionController.get_index);

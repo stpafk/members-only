@@ -76,6 +76,12 @@ exports.post_register = [
 ];
 
 exports.get_login = asyncHandler(async (req, res, next) => {
+
+    if (req.user) {
+        res.redirect("/")
+        return;
+    }
+
     res.render("login", {title: "Login", passportError: req.session.messages});
 })
 
