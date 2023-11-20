@@ -76,24 +76,19 @@ exports.post_register = [
 ];
 
 exports.get_login = asyncHandler(async (req, res, next) => {
-    res.render("login", {title: "Login"});
+    res.render("login", {title: "Login", passportError: req.session.messages});
 })
 
-exports.post_login = function(req, res, next) {
-    passport.authenticate("login", function(err, user, info, status) {
-        if (err) return next(err);
-
-        if(!user) { 
-            res.render("login", {
-                title: "Login", 
-                passportError: ["Incorrect email or password."],
-            })
-            return;
-        }
-
+exports.post_login = [
+    passport.authenticate("login", {
+        successRedirect: "/",
+        failureRedirect: "/login", 
+        failureMessage: true,
+    }), 
+    asyncHandler(async(req, res, next) => {
         res.redirect("/");
-    }) (req, res, next)
-}
+    })
+];
 
 exports.get_logout = asyncHandler(async(req, res, next) => {
 

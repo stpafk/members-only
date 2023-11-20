@@ -9,12 +9,12 @@ passport.use('login', new LocalStrategy(
         User.findOne({email: username})
         .then((user) => {
             if (!user) {
-                return done(null, false, {message: "problem"})
+                return done(null, false, {message: "Incorrect email or password."})
             } 
 
             const match = bcrypt.compareSync(password, user.password);
             if(!match) {
-                return done(null, false, {message: "problem passwd"});
+                return done(null, false, {message: "Incorrect email or password."});
             }
 
             return done(null, user);
