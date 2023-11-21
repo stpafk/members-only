@@ -15,4 +15,8 @@ UserSchema.virtual("full_name").get(function() {
     return `${this.first_name} ${this.last_name}`;
 });
 
+UserSchema.virtual("url").get(function() {
+    return `/user/${this._id}`;
+})
+
 module.exports = mongoose.model("User", UserSchema);
