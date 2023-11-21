@@ -124,6 +124,7 @@ exports.handle_get_contribute = asyncHandler(async(req, res, next) => {
         res.render("not_logged", {
             problem: "contribute"
         });
+        return;
     };
 
     res.render("contribute", {
@@ -176,6 +177,7 @@ exports.get_top = asyncHandler(async(req, res, next) => {
         res.render("not_logged", {
             problem: "contribute"
         });
+        return;
     };
 
     res.render("top_contribute", {
