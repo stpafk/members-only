@@ -204,6 +204,15 @@ main {
     cursor:pointer
 }
 
+li .message.user {
+    padding: 5%;
+}
+
+.message.info .date {
+    color: grey;
+    font-size: 12px;
+}
+
 li .message.user a, .message.user a {
     text-decoration: none;
     color: rgb(228, 0, 190)
