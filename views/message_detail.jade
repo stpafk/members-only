@@ -8,9 +8,9 @@ block content
             a(href="/user/" + message.user._id style="fontsize: 18px") #{message.user.full_name}
         .message.info
             h1= message.message
-            p= message.formatted_date
+            p.date= message.formatted_date
 
     if (canDelete) 
         form(action="/message/" + message._id + "/delete" method='POST')
             input(type="hidden" name="id" value=message._id)
-            button.form.btn(type='submit') Delete
+            button.form.btn(type='submit' style='float: right; margin-right: 10%') Delete
