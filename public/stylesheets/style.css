@@ -131,7 +131,7 @@ main {
     font-size: 18px;
 }
 
-.form-content input {
+.form-content input, textarea {
     margin: 1% 0;
     border-radius: 4px;
     padding: 8px;
@@ -139,6 +139,12 @@ main {
     font-family: 'Space Grotesk', sans-serif;
     box-shadow: 1px 1px 5px #ff00d4c5;
     border: none;
+}
+
+.form-content input:focus, textarea:focus, .form.btn:focus {
+    border: 2px solid rgb(228, 0, 190);
+    box-shadow: 2px 1px 20px #ff00d4c5;
+    outline: none;
 }
 
 .form.btn {

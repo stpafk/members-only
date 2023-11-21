@@ -5,9 +5,12 @@ const Message = require("../models/messages");
 
 exports.get_create_message = asyncHandler(async (req, res, next) => {
 
-    res.render("not_logged", {
-        problem: "post a message"
-    });
+    if (!req.user) {
+        res.render("not_logged", {
+            problem: "post a message"
+        });
+        return;
+    }
 
     res.render("new_message", {title: "New Message"})
 })
