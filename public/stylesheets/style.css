@@ -194,11 +194,6 @@ main {
     gap: 2%;
 }
 
-.messages {
-    border-left: 2px solid rgba(128, 128, 128, 0.514);
-    border-right: 2px solid rgba(128, 128, 128, 0.514);
-}
-
 .messages li {
     display: flex;
     flex-direction: row;
