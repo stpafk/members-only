@@ -79,4 +79,4 @@ npm run dev
 
 [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/stephan-allek-weigert-53801619b/)
 
-[![Project Link](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)]([https://github.com/stpafk/vynil-inventory](https://github.com/stpafk/members-only)https://github.com/stpafk/members-only)
+[![Project Link](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/stpafk/members-only)
